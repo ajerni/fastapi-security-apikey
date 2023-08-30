@@ -3,7 +3,8 @@ from fastapi.security import APIKeyHeader
 
 # get this from a DB in live environment
 api_keys = [
-    "my_api_key"
+    "my_api_key",
+    "letmein"
 ]
 
 api_key_header = APIKeyHeader(name="x-api-key", auto_error=False)
@@ -20,7 +21,11 @@ def get_api_key(
     )
 
 
-app = FastAPI()
+app = FastAPI(title="FastAPI Security Example", description=f"""
+                Demo of Header based API Key Authentication.
+            
+                First authenticate using the button on the right side, using the follwoing API key `my_api_key`.
+              """)
 
 
 @app.get("/public")
